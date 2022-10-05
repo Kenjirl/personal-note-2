@@ -124,6 +124,15 @@ input::placeholder, textarea::placeholder {
   cursor: pointer;
 }
 
+.search-bar {
+  max-width: 600px;
+  margin: 1em auto;
+}
+
+.search-bar input {
+  width: 100%;
+}
+
 .notes-list {
   display: grid;
   grid-template-columns: 1fr;

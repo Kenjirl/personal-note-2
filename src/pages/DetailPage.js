@@ -5,6 +5,7 @@ import ButtonArchive from '../components/ButtonArchive';
 import ButtonDelete from '../components/ButtonDelete';
 import { showFormattedDate } from '../utils';
 import { archiveNote, deleteNote, getNote, unarchiveNote } from '../utils/local-data';
+import PageNotFound from './PageNotFound';
 
 function DetailPageWrapper() {
   const { id } = useParams();
@@ -71,7 +72,7 @@ class DetailPage extends React.Component {
       )
     } else {
       return (
-        <p>404, Page Not Found</p>
+        <PageNotFound />
       )
     }
   }

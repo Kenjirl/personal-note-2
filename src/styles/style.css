@@ -262,6 +262,30 @@ input::placeholder, textarea::placeholder {
   align-items: center;
 }
 
+.page-not-found {
+  margin-top: 4em;
+  text-align: center;
+}
+
+.page-not-found span {
+  font-size: 8em;
+  font-weight: 900;
+  color: white;
+  text-shadow: 5px 5px 10px #808080;
+}
+
+.page-not-found p {
+  font-weight: 700;
+}
+
+.page-not-found > .btn-item {
+  margin: 0 auto;
+  width: fit-content;
+  padding: 0 1em;
+  margin-top: 2em;
+  text-decoration: none;
+}
+
 @media only screen and (min-width: 600px) {
   .note-app__body {
     max-width: 1200px;

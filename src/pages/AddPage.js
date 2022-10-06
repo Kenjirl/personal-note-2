@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 import InputForm from "../components/InputForm";
 import { addNote } from "../utils/local-data";
@@ -73,6 +74,10 @@ class AddPage extends React.Component {
       </div>
     )
   }
+}
+
+AddPage.propTypes = {
+  navigate: PropTypes.func.isRequired,
 }
 
 export default AddPageWrapper;

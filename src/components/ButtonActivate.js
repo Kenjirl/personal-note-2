@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { BiArchiveOut } from 'react-icons/bi';
+import { BiArchiveOut } from "react-icons/bi";
 
 function ButtonActivate({ onActivate }) {
   return(

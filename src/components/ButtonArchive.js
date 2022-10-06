@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { BiArchiveIn } from 'react-icons/bi';
+import { BiArchiveIn } from "react-icons/bi";
 
 function ButtonArchive({ onArchive }) {
   return(

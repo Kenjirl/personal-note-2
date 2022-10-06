@@ -1,6 +1,6 @@
 import React from "react";
-import { Link } from 'react-router-dom';
-import { FiHome, FiArchive } from 'react-icons/fi'
+import { Link } from "react-router-dom";
+import { FiHome, FiArchive } from "react-icons/fi"
 
 function Navbar() {
   return (

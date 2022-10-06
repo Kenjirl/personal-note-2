@@ -1,13 +1,13 @@
-import React from 'react';
-import { useSearchParams, Link } from 'react-router-dom';
-import { FiPlus } from 'react-icons/fi';
-import { getActiveNotes } from '../utils/local-data';
-import NotesList from '../components/NotesList';
-import SearchBar from '../components/SearchBar';
+import React from "react";
+import { useSearchParams, Link } from "react-router-dom";
+import { FiPlus } from "react-icons/fi";
+import { getActiveNotes } from "../utils/local-data";
+import NotesList from "../components/NotesList";
+import SearchBar from "../components/SearchBar";
 
 function HomePageWrapper() {
   const [searchParams, setSearchParams] = useSearchParams();
-  const keyword = searchParams.get('keyword');
+  const keyword = searchParams.get("keyword");
   function changeSearchParams(keyword) {
     setSearchParams({ keyword });
   }
@@ -20,7 +20,7 @@ class HomePage extends React.Component {
 
     this.state = {
       notes: getActiveNotes(),
-      keyword: props.defaultKeyword || '',
+      keyword: props.defaultKeyword || "",
     }
 
     this.onKeywordChangeHanlder = this.onKeywordChangeHanlder.bind(this);

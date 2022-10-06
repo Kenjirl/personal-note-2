@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { MdDeleteOutline } from 'react-icons/md';
+import { MdDeleteOutline } from "react-icons/md";
 
 function ButtonDelete({ onDelete }) {
   return(

@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { useSearchParams } from "react-router-dom";
 import { getArchivedNotes } from "../utils/local-data";
 import NotesList from "../components/NotesList";
@@ -51,6 +52,11 @@ class ArchivePage extends React.Component {
       </React.Fragment>
     )
   }
+}
+
+ArchivePage.proTypes = {
+  defaultKeyword: PropTypes.string,
+  keywordChange: PropTypes.func.isRequired,
 }
 
 export default ArchivePageWrapper;

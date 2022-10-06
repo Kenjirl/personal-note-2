@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { useNavigate, useParams } from "react-router-dom";
 import ButtonActivate from "../components/ButtonActivate";
 import ButtonArchive from "../components/ButtonArchive";
@@ -76,6 +77,11 @@ class DetailPage extends React.Component {
       )
     }
   }
+}
+
+DetailPage.propTypes = {
+  id: PropTypes.string.isRequired,
+  navigate: PropTypes.func.isRequired,
 }
 
 export default DetailPageWrapper;

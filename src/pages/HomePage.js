@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { useSearchParams, Link } from "react-router-dom";
 import { FiPlus } from "react-icons/fi";
 import { getActiveNotes } from "../utils/local-data";
@@ -54,6 +55,11 @@ class HomePage extends React.Component {
       </React.Fragment>
     )
   }
+}
+
+HomePage.propTypes = {
+  defaultKeyword: PropTypes.string,
+  keywordChange: PropTypes.func.isRequired,
 }
 
 export default HomePageWrapper;

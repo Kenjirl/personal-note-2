@@ -1,83 +1,37 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 import InputForm from "../components/InputForm";
-import { addNote } from "../utils/local-data";
+import { addNote } from "../utils/api";
+import LocaleContext from "../contexts/LocaleContext";
 
-function AddPageWrapper() {
+function AddPage(){
   const navigate = useNavigate();
+  const [title, setTitle] = React.useState("");
+  const [body, setBody] = React.useState("");
+  const { locale } = React.useContext(LocaleContext);
 
-  return <AddPage navigate={navigate} />
-}
-
-class AddPage extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      title: "",
-      body: "",
-    }
-
-    this.onTitleChangeHandler = this.onTitleChangeHandler.bind(this);
-    this.onBodyChangeHandler = this.onBodyChangeHandler.bind(this);
-    this.onNoteSubmitHandler = this.onNoteSubmitHandler.bind(this);
+  function onTitleChangeHandler(event) {
+    setTitle(event.target.value);
   }
 
-  onTitleChangeHandler(event) {
-    this.setState(() => {
-      return {
-        title: event.target.value,
-      }
-    })
+  function onBodyChangeHandler(event) {
+    setBody(event.target.value);
   }
 
-  onBodyChangeHandler(event) {
-    this.setState(() => {
-      return {
-        body: event.target.value,
-      }
-    })
-  }
-
-  onNoteSubmitHandler(event) {
+  function onNoteSubmitHandler(event) {
     event.preventDefault();
-
-    if (this.state.title === "" || this.state.body === "") {
-      alert("Judul atau isi dari Note tidak boleh kosong!")
-    }
-    else {
-      addNote(this.state);
-      
-      this.setState(() => {
-        return {
-          title: "",
-          body: "",
-        }
-      })
-
-      this.props.navigate("/");
-    }
+    addNote({title, body});
+    setTitle("");
+    setBody("");
+    navigate("/");
   }
 
-  render() {
-    return (
-      <div className="note-input">
-          <h2>Buat Catatan</h2>
-          <InputForm 
-            onSubmit={this.onNoteSubmitHandler} 
-            title={this.state.title} 
-            body={this.state.body} 
-            onTitleChange={this.onTitleChangeHandler}
-            onBodyChange={this.onBodyChangeHandler}
-          />
-      </div>
-    )
-  }
+  return(
+    <div className="note-input">
+        <h2>{locale === "id" ? "Buat Catatan" : "Add New Note"}</h2>
+        <InputForm onSubmit={onNoteSubmitHandler} title={title} body={body} onTitleChange={onTitleChangeHandler} onBodyChange={onBodyChangeHandler} />
+    </div>
+  )
 }
 
-AddPage.propTypes = {
-  navigate: PropTypes.func.isRequired,
-}
-
-export default AddPageWrapper;
+export default AddPage;

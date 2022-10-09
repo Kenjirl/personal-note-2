@@ -1,65 +1,49 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { useSearchParams, Link } from "react-router-dom";
 import { FiPlus } from "react-icons/fi";
-import { getActiveNotes } from "../utils/local-data";
+import { getActiveNotes } from "../utils/api";
 import NotesList from "../components/NotesList";
 import SearchBar from "../components/SearchBar";
+import LocaleContext from "../contexts/LocaleContext";
 
-function HomePageWrapper() {
+function HomePage() {
   const [searchParams, setSearchParams] = useSearchParams();
-  const keyword = searchParams.get("keyword");
-  function changeSearchParams(keyword) {
+  const [notes, setNotes] = React.useState([]);
+  const [keyword, setKeyword] = React.useState(() => {
+    return searchParams.get("keyword") || "";
+  });
+  const { locale } = React.useContext(LocaleContext);
+
+  React.useEffect(() => {
+    getActiveNotes().then(({ data }) => {
+      setNotes(data);
+    })
+  }, [notes]);
+
+  function onKeywordChangeHandler(keyword) {
+    setKeyword(keyword);
     setSearchParams({ keyword });
   }
-  return <HomePage defaultKeyword={keyword} keywordChange={changeSearchParams} />
-}
 
-class HomePage extends React.Component {
-  constructor(props) {
-    super(props);
+  const filteredNotes = notes.filter((note) => {
+    return note.title.toLowerCase().includes(
+      keyword.toLowerCase()
+    );
+  });
 
-    this.state = {
-      notes: getActiveNotes(),
-      keyword: props.defaultKeyword || "",
-    }
-
-    this.onKeywordChangeHanlder = this.onKeywordChangeHanlder.bind(this);
-  }
-
-  onKeywordChangeHanlder(keyword) {
-    this.setState(() => {
-      return {
-        keyword,
-      }
-    });
-    this.props.keywordChange(keyword);
-  }
-
-  render() {
-    const notes = this.state.notes.filter((note) => {
-      return note.title.toLowerCase().includes(
-        this.state.keyword.toLowerCase()
-      );
-    });
-
-    return (
-      <React.Fragment>
-        <h2 className="notes-list__title">Catatan Aktif</h2>
-
-        <SearchBar keyword={this.state.keyword} keywordChange={this.onKeywordChangeHanlder} />
-
-        <NotesList notes={notes} />
-
-        <Link to="/add" className="add-nav btn-item" title="Tambah"><FiPlus /></Link>
-      </React.Fragment>
+    return(
+      <>
+        <h2 className="notes-list__title">
+          {locale === "id" ? "Catatan Aktif" : "Active Notes"}
+        </h2>
+        <SearchBar keyword={keyword} keywordChange={onKeywordChangeHandler} />
+        <NotesList notes={filteredNotes} />
+        <Link to="/add" className="add-nav btn-item" 
+          title={locale === "id" ? "tambah" : "add"}>
+            <FiPlus />
+        </Link>
+      </>
     )
-  }
 }
 
-HomePage.propTypes = {
-  defaultKeyword: PropTypes.string,
-  keywordChange: PropTypes.func.isRequired,
-}
-
-export default HomePageWrapper;
+export default HomePage;

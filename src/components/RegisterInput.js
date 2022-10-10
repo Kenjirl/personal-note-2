@@ -44,7 +44,7 @@ function RegisterInput({ register }){
   return(
     <form onSubmit={onSubmitHandler} className="log-reg-input">
       <h2>{locale === "id" ? "Daftar" : "Register"}</h2>
-      <input type="text" value={name} onChange={onNameChange} required 
+      <input type="text" value={name} onChange={onNameChange} required autoFocus
         placeholder={locale === "id" ? "Nama" : "Name"} />
       <input type="email" placeholder="Email" value={email} onChange={onEmailChange} required/>
       <input type={passType} autoComplete="current-password" value={password} onChange={onPasswordChange} required 

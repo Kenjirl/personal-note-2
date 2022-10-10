@@ -277,6 +277,10 @@ input::placeholder, textarea::placeholder {
   justify-content: center;
 }
 
+.log-reg-button > .btn-item {
+  margin: 0 .5em;
+}
+
 .page-not-found {
   margin-top: 4em;
   text-align: center;

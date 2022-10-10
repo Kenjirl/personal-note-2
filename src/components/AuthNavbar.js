@@ -1,22 +1,27 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import { WavyLink } from "react-wavy-transitions";
 import { FiLogIn, FiUserPlus } from "react-icons/fi";
 import LocaleContext from "../contexts/LocaleContext";
 
 function AuthNavbar() {
   const { locale } = React.useContext(LocaleContext);
+  const location = useLocation();
+
   return (
     <>
       <h1>{locale === "id" ? "Catatan" : "Notes"}</h1>
       <ul className="page-nav">
-          <Link to="/" className="btn-item" 
-            title={locale === "id" ? "masuk" : "log in"}>
-              <li><FiLogIn /></li>
-          </Link>
-          <Link to="/register" className="btn-item" 
-            title={locale === "id" ? "daftar" : "sign in"}>
-              <li><FiUserPlus /></li>
-          </Link>
+        { 
+          location.pathname === "/register"
+          ? <WavyLink to="/" title={locale === "id" ? "masuk" : "log in"}>
+              <li className="btn-item" ><FiLogIn /></li>
+          </WavyLink>
+
+          : <WavyLink to="/register" title={locale === "id" ? "daftar" : "sign in"}>
+              <li className="btn-item" ><FiUserPlus /></li>
+          </WavyLink>
+        }
       </ul>
     </>
   )

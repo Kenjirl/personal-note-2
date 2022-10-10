@@ -31,19 +31,19 @@ function HomePage() {
     );
   });
 
-    return(
-      <>
-        <h2 className="notes-list__title">
-          {locale === "id" ? "Catatan Aktif" : "Active Notes"}
-        </h2>
-        <SearchBar keyword={keyword} keywordChange={onKeywordChangeHandler} />
-        <NotesList notes={filteredNotes} />
-        <Link to="/add" className="add-nav btn-item" 
-          title={locale === "id" ? "tambah" : "add"}>
-            <FiPlus />
-        </Link>
-      </>
-    )
+  return(
+    <>
+      <h2 className="notes-list__title">
+        {locale === "id" ? "Catatan Aktif" : "Active Notes"}
+      </h2>
+      <SearchBar keyword={keyword} keywordChange={onKeywordChangeHandler} />
+      <NotesList notes={filteredNotes} />
+      <Link to="/add" className="add-nav btn-item" 
+        title={locale === "id" ? "tambah" : "add"}>
+          <FiPlus />
+      </Link>
+    </>
+  )
 }
 
 export default HomePage;

@@ -8,7 +8,7 @@ import "./styles/style.css";
 
 const root = createRoot(document.getElementById("root"));
 root.render(
-  <BrowserRouter>
+  <BrowserRouter basename="/personal-note-2">
     <WavyContainer />
     <App />
   </BrowserRouter>
